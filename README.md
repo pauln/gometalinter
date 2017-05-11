@@ -244,9 +244,16 @@ ones you want:
 
 ### How do I make `gometalinter` work with Go 1.5 vendoring?
 
-`gometalinter` has a `--vendor` flag that just sets `GO15VENDOREXPERIMENT=1`, however the
+`gometalinter` has a `--vendor` flag that sets `GO15VENDOREXPERIMENT=1`, however the
 underlying tools must support it. Ensure that all of the linters are up to date and built with Go 1.5
 (`gometalinter --install --force`) then run `gometalinter --vendor .`. That should be it.
+
+### How do I stop `gometalinter` from linting vendored packages?
+
+The `--vendor` flag (see above) also excludes the `vendor` directory, so even if
+you're using a version of Go which enables vendoring by default, you may wish to
+use the `--vendor` flag.  Alternatively, you can use `--exclude=vendor` to exclude
+vendored packages.
 
 ### Why does `gometalinter --install` install a fork of gocyclo?
 
